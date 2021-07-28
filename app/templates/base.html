@@ -18,7 +18,12 @@
   <link href="https://cdn.jsdelivr.net/npm/now-ui-dashboard@1.0.1/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/now-ui-dashboard@1.0.1/assets/css/now-ui-dashboard.css" rel="stylesheet" />
   
-  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <script src={{url_for('static', filename='js/index.js')}} sync defer></script>
+  <link rel="stylesheet" href={{url_for('static', filename='css/index.css')}}>
+
+  {% block head %}
+  
+  {% endblock %}
 </head>
 
 <body class="">

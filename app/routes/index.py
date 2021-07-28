@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+import pandas as pd
 
 @app.route("/")
 def index():
@@ -7,4 +8,7 @@ def index():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    df = pd.read_csv('app/data/Equity.csv')
+    df = df.drop(['Face Value', 'Instrument', 'Group', 'Industry', 'Security Name', "ISIN No"], axis=1)
+    df = df.to_dict(orient='records')
+    return render_template("home.html", data=df)
