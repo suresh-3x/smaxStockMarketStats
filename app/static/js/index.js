@@ -36,11 +36,10 @@ function getStocksData(){
 
 function renderStockData(){
     document.querySelector('#load').remove()
-    document.querySelector('.row').innerHTML = `
-    <div class="col-lg-4">
+    document.querySelector('#top10Gainers').innerHTML = `
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Top 10 Movers</h3>
+            <h3 class="card-title">Top 10 Gainers</h3>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -53,14 +52,38 @@ function renderStockData(){
                             <th>Change</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="top10Gainers">
                         
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
     </div>`
+
+    document.querySelector('#top10Losers').innerHTML = `
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Top 10 Losers</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody class="top10Losers">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>`
+
     for (let stock of stocksData) {
         if (stock['chart']['result'][0]['meta']['regularMarketPrice'] == undefined || stock['chart']['result'][0]['meta']['previousClose'] == undefined){
             stocksData.splice(stocksData.indexOf(stock),1)      
@@ -79,7 +102,17 @@ function renderStockData(){
         <td>${stock['Name']}</td>
         <td>${stock['chart']['result'][0]['meta']['regularMarketPrice']}</td>
         <td>${stock['Percent Change']}</td>`
-        document.querySelector('.row tbody').appendChild(tr)
+        document.querySelector('.top10Gainers').appendChild(tr)
+    }
+      
 
+    for(let stock of stocksData.slice(0, 10)){
+        let tr = document.createElement("tr")
+        tr.innerHTML = `
+        <td>${stock['Symbol']}</td>
+        <td>${stock['Name']}</td>
+        <td>${stock['chart']['result'][0]['meta']['regularMarketPrice']}</td>
+        <td>${stock['Percent Change']}</td>`
+        document.querySelector('.top10Losers').appendChild(tr)
     }
 }
