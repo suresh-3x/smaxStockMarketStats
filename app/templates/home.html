@@ -30,19 +30,17 @@
                         <table class="table">
                             <thead class="text-primary">
                                 <tr>
-                                    <th>Name</th>
                                     <th>Symbol</th>
                                     <th>Rate</th>
-                                    <th>% Change</th>
+                                    <th>Change</th>
                                 </tr>
                             </thead>
                             <tbody id="top10Gainers">
                                 {% for row in data['gainers'] %}
                                     <tr>
-                                        <td>{{ row['FullName'] }}</td>
                                         <td>{{ row['Name'] }}</td>
                                         <td>{{ row['Rate'] }}</td>
-                                        <td>{{ row['PChange'] }}</td>
+                                        <td>{{ row['PChange']|string + '%' }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -63,19 +61,17 @@
                         <table class="table">
                             <thead class="text-primary">
                                 <tr>
-                                    <th>Name</th>
                                     <th>Symbol</th>
                                     <th>Rate</th>
-                                    <th>% Change</th>
+                                    <th>Change</th>
                                 </tr>
                             </thead>
                             <tbody id="top10Losers">
                                 {% for row in data['losers'] %}
                                     <tr>
-                                        <td>{{ row['FullName'] }}</td>
                                         <td>{{ row['Name'] }}</td>
                                         <td>{{ row['Rate'] }}</td>
-                                        <td>{{ row['PChange'] }}</td>
+                                        <td>{{ row['PChange']|string + '%' }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
