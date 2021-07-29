@@ -1,23 +1,90 @@
 {% extends 'base.html' %}
+{% block head %}
+{% endblock %}
 {% block content %}
-    <div id="load">
-        <div>G</div>
-        <div>N</div>
-        <div>I</div>
-        <div>D</div>
-        <div>A</div>
-        <div>O</div>
-        <div>L</div>
-    </div>
 
+
+    {% if request.method=="GET" %}
     <div class="row">
-        <div class="col-md-6" id="top10Gainers">
+        <div class="col-lg-4">
         </div>
-    
-        <div class="col-md-6" id="top10Losers">
+
+        <div class="col-lg-4">
+            <div class="col" id="loading">
+                <img class="loading"src="https://cdn.dribbble.com/users/241526/screenshots/954930/loader.gif" alt="Loading">
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
         </div>
     </div>
-    <script>
-        const STOCKS = {{ data|tojson }}
-    </script>
+    {% else %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Top 10 Gainers</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Symbol</th>
+                                    <th>Rate</th>
+                                    <th>% Change</th>
+                                </tr>
+                            </thead>
+                            <tbody id="top10Gainers">
+                                {% for row in data['gainers'] %}
+                                    <tr>
+                                        <td>{{ row['FullName'] }}</td>
+                                        <td>{{ row['Name'] }}</td>
+                                        <td>{{ row['Rate'] }}</td>
+                                        <td>{{ row['PChange'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Top 10 Losers</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Symbol</th>
+                                    <th>Rate</th>
+                                    <th>% Change</th>
+                                </tr>
+                            </thead>
+                            <tbody id="top10Losers">
+                                {% for row in data['losers'] %}
+                                    <tr>
+                                        <td>{{ row['FullName'] }}</td>
+                                        <td>{{ row['Name'] }}</td>
+                                        <td>{{ row['Rate'] }}</td>
+                                        <td>{{ row['PChange'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+   
 {% endblock %}
