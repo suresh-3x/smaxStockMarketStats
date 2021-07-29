@@ -1,4 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
-    
+    {% if request.method == 'GET' %}
+    <div class="row">
+        <div style="margin-left: 30%; margin-right: 30%;" class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Search for specific stocks</h5>
+                </div>
+                <div class="card-body">
+                    <form id="stockFinderForm" method="POST" style="font-size: large;">
+                        <label for="mp">Enter the maximum price</label>
+                        <input class="form-control" type="number" id="mp" name="mp">
+                        <label for="mc">Enter the minimum change</label>
+                        <input class="form-control" type="number" id="mc" name="mc" min="-100" max="100">
+                        <br>
+                        <input style="background-color: #f96332;" class="form-control" type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        {% if data|length < 1 %}
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-center card-title">We did not find any results. <a href="{{ url_for('stock_finder') }}">Search Again.</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        {% else %}
+        <div class="row">
+            <div style="margin-left: 30%; margin-right: 30%;" class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center card-title">Results
+                            <br>
+                            <a style="inline-size: -webkit-fill-available;" href="{{ url_for('stock_finder') }}" class="btn btn-primary">Search Again.</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Rate</th>
+                                        <th>Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="top10Gainers">
+                                    {% for row in data %}
+                                        <tr>
+                                            <td>{{ row['Name'] }}</td>
+                                            <td>{{ row['Rate'] }}</td>
+                                            <td>{{ row['PChange']|string + '%' }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif%}
+    {% endif %}
 {% endblock %}

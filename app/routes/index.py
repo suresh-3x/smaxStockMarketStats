@@ -17,5 +17,5 @@ async def home():
         }
         
         return render_template("home.html", data=data)
-    else:
-        return render_template("home.html")
+        
+    return render_template("home.html")
