@@ -22,7 +22,7 @@
                 countdown = document.getElementById("countdown"),
                 content = document.getElementById("content");
   
-            headline.innerHTML = "Launch Successfull. Click <a href='https://smaxstockstats.herokuapp.com/home'>here</a> to start.";
+            headline.innerHTML = "Launch Successfull. Click <a href='https://smax-stock-market-stats.herokuapp.com/home'>here</a> to start.";
             countdown.style.display = "none";
             content.style.display = "block";
   
