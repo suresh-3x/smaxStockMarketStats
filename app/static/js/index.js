@@ -1,9 +1,14 @@
 function  getStocksData(){
+    let now = performance.now()
     fetch('/home', {
         method: 'POST'
     })
     .then(res=>res.text())
-    .then(html=>document.getElementsByTagName("html")[0].innerHTML = html)
+    .then(html=>{
+        document.getElementsByTagName("html")[0].innerHTML = html;
+        let end = performance.now()
+        console.log(`Results fetched in ${(end-now).toFixed(2)}`)
+    })
     .catch(err=>console.log())
 }
 
@@ -27,12 +32,17 @@ if (window.location.pathname == '/stock-finder'){
         
         <div class="col-lg-4">
         </div>`
+        let now = performance.now()
         fetch('/stock-finder', {
             method: "POST",
             body: new FormData(form)
         })
         .then(res=>res.text())
-        .then(html=>document.getElementsByTagName("html")[0].innerHTML = html)
+        .then(html=>{
+            document.getElementsByTagName("html")[0].innerHTML = html
+            let end = performance.now()
+            console.log(`Results fetched in ${(end-now).toFixed(2)}`)
+        })
         .catch(err=>console.log())
     })
 }

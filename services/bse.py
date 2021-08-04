@@ -6,7 +6,6 @@ import pandas as pd
 
 dataset = pd.read_csv(r'app/data/Equity.csv')
 STOCKS = dataset['Issuer Name']
-STOCKS = STOCKS[:500]
 header = {'User': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0'}
 DATA = []
 async def get_stock_data(session, bseid, mc=None, mp=None):
@@ -26,6 +25,7 @@ async def get_stock_data(session, bseid, mc=None, mp=None):
             else:
                 DATA.append(x)
         except Exception as e:
+            print(e, bseid)
             pass
   
 
