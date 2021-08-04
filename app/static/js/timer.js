@@ -22,7 +22,7 @@
                 countdown = document.getElementById("countdown"),
                 content = document.getElementById("content");
   
-            headline.innerText = "It's my birthday!";
+            headline.innerHTML = "Launch Successfull. Click <a href='https://smaxstockstats.herokuapp.com/home'>here</a> to start.";
             countdown.style.display = "none";
             content.style.display = "block";
   
