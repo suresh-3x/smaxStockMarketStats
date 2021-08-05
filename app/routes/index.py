@@ -3,10 +3,7 @@ from flask import render_template, request
 import pandas as pd
 from services.bse import get_top_10_movers
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
+@app.route("/home", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
 async def home():
     if request.method == "POST":
