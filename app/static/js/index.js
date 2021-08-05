@@ -12,7 +12,7 @@ function  getStocksData(){
     .catch(err=>console.log())
 }
 
-if (window.location.pathname == '/home'){
+if (window.location.pathname == '/home' || window.location.pathname == '/'){
     getStocksData()
 }
 
