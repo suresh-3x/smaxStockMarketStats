@@ -4,7 +4,7 @@ import pandas as pd
 from services.bse import get_top_10_movers
 
 @app.route("/home", methods=['GET', 'POST'])
-@app.route("/home", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 async def home():
     if request.method == "POST":
         losers, gainers = await get_top_10_movers()
