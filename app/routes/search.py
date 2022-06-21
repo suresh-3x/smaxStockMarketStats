@@ -1,4 +1,3 @@
-from aiohttp.client import request
 from app import app
 from flask import render_template, request
 from services.bse import search_stocks

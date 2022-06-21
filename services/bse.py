@@ -26,7 +26,6 @@ async def get_stock_data(session, bseid, mc=None, mp=None):
                 DATA.append(x)
         except Exception as e:
             print(e, bseid)
-            pass
   
 
 async def get_top_10_movers():

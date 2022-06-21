@@ -1,6 +1,5 @@
 from app import app
 from flask import render_template, request
-import pandas as pd
 from services.bse import get_top_10_movers
 
 @app.route("/home", methods=['GET', 'POST'])
@@ -12,7 +11,6 @@ async def home():
             'gainers': gainers,
             'losers': losers
         }
-        
         return render_template("home.html", data=data)
         
     return render_template("home.html")
